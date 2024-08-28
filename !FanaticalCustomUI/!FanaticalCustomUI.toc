@@ -1,0 +1,10 @@
+## Interface: 100105
+## Title: |cff7381ff!Fanatical Custom UI|r
+## Notes: UI Baseline for Fanatical UI » twitch.tv/ifanatical.
+## Version: 2.0
+## Author: Fanatical
+## URL: http://twitch.tv/ifanatical
+## DefaultState: Enable
+
+# Modules
+!FanaticalCustomUI.lua

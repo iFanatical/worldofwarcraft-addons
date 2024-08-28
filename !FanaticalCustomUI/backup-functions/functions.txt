@@ -1,0 +1,100 @@
+--Modify Chat Frames
+
+local function ModifyChatFrames()
+    for i = 1, NUM_CHAT_WINDOWS do
+        local chatFrame = _G["ChatFrame"..i]
+
+        if chatFrame then
+            local background = _G["ChatFrame"..i.."Background"]
+            local editBox = _G["ChatFrame"..i.."EditBox"]
+            local editBoxMid = _G["ChatFrame"..i.."EditBoxMid"]
+            local editBoxRight = _G["ChatFrame"..i.."EditBoxRight"]
+            local editBoxLeft = _G["ChatFrame"..i.."EditBoxLeft"]
+            local rightTexture = _G["ChatFrame"..i.."RightTexture"]
+            local leftTexture = _G["ChatFrame"..i.."LeftTexture"]
+            local topTexture = _G["ChatFrame"..i.."TopTexture"]
+            local bottomTexture = _G["ChatFrame"..i.."BottomTexture"]
+            local buttonFrame = _G["ChatFrame"..i.."ButtonFrame"]
+            local font, size, _ = chatFrame:GetFont()
+
+
+            if background then background:Hide() end
+            if editBoxMid then editBoxMid:Hide() end
+            if editBoxRight then editBoxRight:Hide() end
+            if editBoxLeft then editBoxLeft:Hide() end
+            if rightTexture then rightTexture:Hide() end
+            if leftTexture then leftTexture:Hide() end
+            if topTexture then topTexture:Hide() end
+            if bottomTexture then bottomTexture:Hide() end
+
+            if buttonFrame then buttonFrame:Hide() end
+
+            if editBox then
+                editBox:ClearAllPoints()
+                editBox:SetPoint("CENTER", chatFrame, "CENTER", 0, 165)
+
+                -- Set a proper width and height for the EditBox
+                editBox:SetWidth(480)  -- You can adjust the width as needed
+                editBox:SetHeight(20)  -- You can adjust the height as needed
+            end
+            if chatFrame then
+                chatFrame:SetFont(font, size, "OUTLINE")  -- Add outline to the font
+                chatFrame:SetShadowOffset(0, 0)  -- Remove shadow
+            end
+        end
+    end
+end
+
+-- Call the function when the addon is loaded
+ModifyChatFrames()
+
+
+--remove chat tab textures
+local function ModifyChatTabs()
+    local count = 1
+
+    for i = 1, 10 do
+        local chatTab = _G["ChatFrame"..i.."Tab"]
+        local fontString = chatTab:GetFontString()
+        local font, size, _ = fontString:GetFont()
+
+        if chatTab then
+            chatTab.Right:Hide()
+            chatTab.Left:Hide()
+            chatTab.Middle:Hide()
+
+            chatTab.ActiveLeft:SetAlpha(0)
+            chatTab.ActiveRight:SetAlpha(0)
+            chatTab.ActiveMiddle:SetAlpha(0)
+
+            chatTab.HighlightLeft:SetTexture(nil)
+            chatTab.HighlightRight:SetTexture(nil)
+            chatTab.HighlightMiddle:SetTexture([[Interface\BUTTONS\CheckButtonGlow]])
+            chatTab.HighlightMiddle:SetWidth(76)
+            chatTab.HighlightMiddle:SetTexCoord(0, 0, 1, 0.5)
+        end
+
+        -- Modify the chat tab font
+        if fontString then
+            fontString:SetFont(font, 14, "OUTLINE")  -- Add outline to the tab text
+            fontString:SetShadowOffset(0, 0)  -- Remove shadow from the tab text
+            fontString:SetTextColor(1, 0, 0)
+        end
+    end
+    count = count + 1
+end
+
+
+-- Call the function when the addon is loaded
+local CallModifyChatTabs = CreateFrame("Frame")
+CallModifyChatTabs:SetScript("OnEvent", function()
+    if event == 'CHAT_MSG_WHISPER' or event == 'CHAT_MSG_CHANNEL' then
+    ModifyChatTabs()
+    ModifyChatFrames()
+    end
+end)
+CallModifyChatTabs:RegisterEvent('CHAT_MSG_WHISPER')
+CallModifyChatTabs:RegisterEvent('CHAT_MSG_CHANNEL')
+
+--Load ModifyChatTabs
+ModifyChatTabs()
