@@ -104,7 +104,11 @@ local function ModifyChatFrames()
             local rightTexture = _G["ChatFrame"..i.."RightTexture"]
             local leftTexture = _G["ChatFrame"..i.."LeftTexture"]
             local topTexture = _G["ChatFrame"..i.."TopTexture"]
+            local topRightTexture = _G["ChatFrame"..i.."TopRightTexture"]
+            local topLeftTexture = _G["ChatFrame"..i.."TopLeftTexture"]
             local bottomTexture = _G["ChatFrame"..i.."BottomTexture"]
+            local bottomRightTexture = _G["ChatFrame"..i.."BottomRightTexture"]
+            local bottomLeftTexture = _G["ChatFrame"..i.."BottomLeftTexture"]
             local buttonFrame = _G["ChatFrame"..i.."ButtonFrame"]
             local font, size, _ = chatFrame:GetFont()
 
@@ -116,7 +120,11 @@ local function ModifyChatFrames()
             if rightTexture then rightTexture:Hide() end
             if leftTexture then leftTexture:Hide() end
             if topTexture then topTexture:Hide() end
+            if topRightTexture then topRightTexture:Hide() end
+            if topLeftTexture then topLeftTexture:Hide() end
             if bottomTexture then bottomTexture:Hide() end
+            if bottomRightTexture then bottomRightTexture:Hide() end
+            if bottomLeftTexture then bottomLeftTexture:Hide() end
 
             if buttonFrame then buttonFrame:Hide() end
 
@@ -174,9 +182,9 @@ end
 --Load ModifyChatTabs
 ModifyChatTabs()
 
--------------
---PLAYER NAME
--------------
+--------------
+--PLAYER FRAME
+--------------
 local function ModifyPlayerName()
     local playerUnitName = _G["PlayerName"]
     local playerUnitLevel = _G["PlayerLevelText"]
@@ -197,9 +205,9 @@ end
 --Load ModifyPlayerName
 ModifyPlayerName()
 
-----------
---PET NAME
-----------
+-----------
+--PET FRAME
+-----------
 local function ModifyPetName()
     local petUnitName = _G["PetName"]
     local font, size, _ = petUnitName:GetFont()
@@ -214,9 +222,9 @@ end
 --Load ModifyPetName
 ModifyPetName()
 
--------------
---TARGET NAME
--------------
+--------------
+--TARGET FRAME
+--------------
 local function ModifyTargetName()
     local targetFrameName = TargetFrame.TargetFrameContent.TargetFrameContentMain.Name
     local targetFrameLevelText = TargetFrame.TargetFrameContent.TargetFrameContentMain.LevelText
@@ -275,9 +283,9 @@ end)
 --Load ModifyToTName
 ModifyToTName()
 
-------------
---FOCUS NAME
-------------
+-------------
+--FOCUS FRAME
+-------------
 local function ModifyFocusName()
     local focusFrameName = FocusFrame.TargetFrameContent.TargetFrameContentMain.Name
     local focusFrameLevelText = FocusFrame.TargetFrameContent.TargetFrameContentMain.LevelText
@@ -335,8 +343,36 @@ end)
 --Load ModifyToTName
 ModifyFocusToTName()
 
+-------------
+--BOSS FRAMES
+-------------
+local function ModifyBossName()
+    for i = 1, 5 do
+        local bossName = "Boss"..i.."FrameTarget.TargetFrameContent.TargetFrameContentMain.Name"
+        local font, size, _ = bossName:GetFont()
+
+        if bossName then
+            bossName:SetFont(font, size, "OUTLINE")
+            bossName:SetShadowOffset (0, 0)
+            bossName:SetTextColor(1, 1, 1)
+        end
+    end
+end
+
+self:
+local bossNameEvent = CreateFrame("Frame")
+bossNameEvent:RegisterEvent("UNIT_TARGETABLE_CHANGED");
+bossNameEvent:SetScript("OnEvent", function()
+    if event == 'UNIT_TARGETABLE_CHANGED' then
+    ModifyBossName()
+    end
+end)
+
+--Load ModifyBossName
+ModifyBossName()
+
 --------------
---PARTY STATUS
+--PARTY FRAMES
 --------------
 local function ModifyPartyStatus()
     for i = 1, 5 do
@@ -351,12 +387,6 @@ local function ModifyPartyStatus()
     end
 end
 
---Load ModifyPartyStatus
-ModifyPartyStatus()
-
-------------
---PARTY NAME
-------------
 local function ModifyPartyNames()
     for i = 1, 5 do
         local partyName = _G["CompactPartyFrameMember"..i.."Name"]
@@ -369,12 +399,13 @@ local function ModifyPartyNames()
     end
 end
 
---Load ModifyPartyNames
+--Load ModifyPartyStatus and Names
+ModifyPartyStatus()
 ModifyPartyNames()
 
----------------------------
---RAID NAME AND STATUS TEXT
----------------------------
+-------------
+--RAID FRAMES
+-------------
 local function ChangeRaidFrameFont()
     local newFont = "Fonts\\FRIZQT__.TTF"  -- Path to the desired font
     local fontSizeName = 12  -- Desired font size
