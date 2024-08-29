@@ -4,80 +4,78 @@
 local uiSetup = CreateFrame("Frame")
 uiSetup:RegisterEvent("PLAYER_ENTERING_WORLD")
 uiSetup:SetScript("OnEvent", function(self)
-		
-		--Hide StanceBar
-		StanceBar:Hide()
 
-		--Hide XP Bar
-		MainStatusTrackingBarContainer:HookScript("OnShow", MainStatusTrackingBarContainer.Hide)
-		MainStatusTrackingBarContainer:Hide()
-        
-        --Focus Target of Target Frame
-		FocusFrameToT:ClearAllPoints()
-        FocusFrameToT:SetPoint("CENTER",FocusFrame,"CENTER", 80,-55)
-        --FocusFrameToT.SetPoint = function() end
-        FocusFrameToT:SetScale(1)
-        
-		--Target of Target Frame
-		TargetFrameToT:ClearAllPoints()
-        TargetFrameToT:SetPoint("CENTER",TargetFrame,"CENTER", 80,-55)
-        --TargetFrameToT.SetPoint = function() end
-        TargetFrameToT:SetScale(1)
+    --Hide StanceBar
+    StanceBar:Hide()
 
-        -- Party frame setup
-        CompactPartyFrame:ClearAllPoints()
-        CompactPartyFrame:SetScale(1.2)
-        
-        -- Rune frame setup
-        RuneFrame:HookScript("OnShow", RuneFrame.Hide)
-        RuneFrame:Hide()
-        RuneFrame:ClearAllPoints()
-        
-        -- Essence frame setup
-        EssencePlayerFrame:HookScript("OnShow", RuneFrame.Hide)
-        EssencePlayerFrame:Hide()
-        EssencePlayerFrame:ClearAllPoints()
-        
-        -- Combo Point Druid Player frame setup
-        DruidComboPointBarFrame:HookScript("OnShow", DruidComboPointBarFrame.Hide)
-        DruidComboPointBarFrame:Hide()
-        DruidComboPointBarFrame:ClearAllPoints()
-        
-        -- Monk Harmony Bar frame setup
-        
-        --MonkHarmonyBarFrame:HookScript("OnShow", MonkHarmonyBarFrame.Hide)
-        --MonkHarmonyBarFrame:Hide()
-        --MonkHarmonyBarFrame:ClearAllPoints()
+    --Hide XP Bar
+    MainStatusTrackingBarContainer:HookScript("OnShow", MainStatusTrackingBarContainer.Hide)
+    MainStatusTrackingBarContainer:Hide()
 
-        -- Monk Stagger Bar frame setup
+    --Focus Target of Target Frame
+    FocusFrameToT:ClearAllPoints()
+    FocusFrameToT:SetPoint("CENTER",FocusFrame,"CENTER", 80,-55)
+    --FocusFrameToT.SetPoint = function() end
+    FocusFrameToT:SetScale(1)
+
+    --Target of Target Frame
+    TargetFrameToT:ClearAllPoints()
+    TargetFrameToT:SetPoint("CENTER",TargetFrame,"CENTER", 80,-55)
+    TargetFrameToT:SetScale(1)
+
+    --Party frame setup
+    CompactPartyFrame:ClearAllPoints()
+    CompactPartyFrame:SetScale(1.2)
         
-        --MonkStaggerBar:HookScript("OnShow", MonkStaggerBar.Hide)
-        --MonkStaggerBar:Hide()
-        --MonkStaggerBar:ClearAllPoints()
+    --Rune frame setup
+    RuneFrame:HookScript("OnShow", RuneFrame.Hide)
+    RuneFrame:Hide()
+    RuneFrame:ClearAllPoints()
         
-        --Paladin PowerBar Settings
-		PaladinPowerBarFrame:HookScript("OnShow", PaladinPowerBarFrame.Hide)
-        PaladinPowerBarFrame:Hide()
-        PaladinPowerBarFrame:ClearAllPoints()
+    --Essence frame setup
+    EssencePlayerFrame:HookScript("OnShow", RuneFrame.Hide)
+    EssencePlayerFrame:Hide()
+    EssencePlayerFrame:ClearAllPoints()
         
-        --AlternatePowerBar Settings
-        --PlayerFrameAlternatePowerBarArea:Hide()
-        --PlayerFrameAlternatePowerBarArea:HookScript("OnShow", PlayerFrameAlternatePowerBarArea.Hide)
-        --PlayerFrame.PlayerFrameContainer.AlternatePowerFrameTexture:Hide()
-        --PlayerFrame.PlayerFrameContainer.AlternatePowerFrameTexture:HookScript("OnShow", PlayerFrame.PlayerFrameContainer.AlternatePowerFrameTexture.Hide)
-        --PlayerFrame.PlayerFrameContainer.AlternatePowerFrameTexture:HookScript("OnShow", PlayerFrame.PlayerFrameContainer.Show)
-        --PlayerFrame.PlayerFrameContainer:Show()
-        --AlternatePowerBar.Border:Hide()
-        --AlternatePowerBar.Border:HookScript("OnShow", AlternatePowerBar.Border.Hide)
-        --AlternatePowerBar.Background:Hide()
-        --AlternatePowerBar.Background:HookScript("OnShow", AlternatePowerBar.Background.Hide)
+    --Combo Point Druid Player frame setup
+    DruidComboPointBarFrame:HookScript("OnShow", DruidComboPointBarFrame.Hide)
+    DruidComboPointBarFrame:Hide()
+    DruidComboPointBarFrame:ClearAllPoints()
+
+    --Monk Harmony Bar frame setup
+    --MonkHarmonyBarFrame:HookScript("OnShow", MonkHarmonyBarFrame.Hide)
+    --MonkHarmonyBarFrame:Hide()
+    --MonkHarmonyBarFrame:ClearAllPoints()
+
+    -- Monk Stagger Bar frame setup
         
-        --Hide Class Totem Frame
-        TotemFrame:UnregisterAllEvents()
-		TotemFrame:HookScript("OnShow", TotemFrame.Hide)
-		TotemFrame:Hide()
+    --MonkStaggerBar:HookScript("OnShow", MonkStaggerBar.Hide)
+    --MonkStaggerBar:Hide()
+    --MonkStaggerBar:ClearAllPoints()
         
-		self:UnregisterAllEvents()
+    --Paladin PowerBar Settings
+    PaladinPowerBarFrame:HookScript("OnShow", PaladinPowerBarFrame.Hide)
+    PaladinPowerBarFrame:Hide()
+    PaladinPowerBarFrame:ClearAllPoints()
+        
+    --AlternatePowerBar Settings
+    --PlayerFrameAlternatePowerBarArea:Hide()
+    --PlayerFrameAlternatePowerBarArea:HookScript("OnShow", PlayerFrameAlternatePowerBarArea.Hide)
+    --PlayerFrame.PlayerFrameContainer.AlternatePowerFrameTexture:Hide()
+    --PlayerFrame.PlayerFrameContainer.AlternatePowerFrameTexture:HookScript("OnShow", PlayerFrame.PlayerFrameContainer.AlternatePowerFrameTexture.Hide)
+    --PlayerFrame.PlayerFrameContainer.AlternatePowerFrameTexture:HookScript("OnShow", PlayerFrame.PlayerFrameContainer.Show)
+    --PlayerFrame.PlayerFrameContainer:Show()
+    --AlternatePowerBar.Border:Hide()
+    --AlternatePowerBar.Border:HookScript("OnShow", AlternatePowerBar.Border.Hide)
+    --AlternatePowerBar.Background:Hide()
+    --AlternatePowerBar.Background:HookScript("OnShow", AlternatePowerBar.Background.Hide)
+
+    --Hide Class Totem Frame
+    TotemFrame:UnregisterAllEvents()
+    TotemFrame:HookScript("OnShow", TotemFrame.Hide)
+    TotemFrame:Hide()
+
+    self:UnregisterAllEvents()
 end)
 
 ----------

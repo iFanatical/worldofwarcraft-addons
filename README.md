@@ -1,2 +1,2 @@
 # worldofwarcraft-addons
-Custom addons made by me for World of Warcraft.
+Custom UI tweaks made by me, with pieces of other addons built-in.
