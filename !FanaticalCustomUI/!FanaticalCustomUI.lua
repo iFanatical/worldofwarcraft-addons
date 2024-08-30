@@ -254,7 +254,7 @@ targetNameEvent:SetScript("OnEvent", function()
     end
 end)
 
--- Load ModifyTargetName
+--Load ModifyTargetName
 ModifyTargetName()
 
 
@@ -320,7 +320,6 @@ ModifyFocusName()
 
 
 local function ModifyFocusToTName()
-    --local targetToTName = TargetFrameToT.Name
     local focusToTName = FocusFrameToT.Name
     local font, size, _ = focusToTName:GetFont()
 
@@ -332,8 +331,8 @@ local function ModifyFocusToTName()
 end
 
 local focusToTNameEvent = CreateFrame("Frame")
-focusToTNameEvent:RegisterEvent("UNIT_CLASSIFICATION_CHANGED");
-focusToTNameEvent:RegisterEvent("PLAYER_FLAGS_CHANGED");
+focusToTNameEvent:RegisterEvent("UNIT_CLASSIFICATION_CHANGED")
+focusToTNameEvent:RegisterEvent("PLAYER_FLAGS_CHANGED")
 focusToTNameEvent:SetScript("OnEvent", function()
     if event == 'PLAYER_FLAGS_CHANGED' then
     ModifyFocusToTName()
@@ -346,30 +345,35 @@ ModifyFocusToTName()
 -------------
 --BOSS FRAMES
 -------------
-local function ModifyBossName()
-    for i = 1, 5 do
-        local bossName = "Boss"..i.."FrameTarget.TargetFrameContent.TargetFrameContentMain.Name"
-        local font, size, _ = bossName:GetFont()
+local function SetBossFrameFonts(bossFrame)
+    local font = "Fonts\\FRIZQT__.TTF"  -- Path to your desired font
+    local fontSize = 10  -- Desired font size
+    local fontOutline = "OUTLINE"  -- Font outline type (e.g., "OUTLINE", "THICKOUTLINE", or "" for no outline)
 
-        if bossName then
-            bossName:SetFont(font, size, "OUTLINE")
-            bossName:SetShadowOffset (0, 0)
-            bossName:SetTextColor(1, 1, 1)
+    local bossFrameName = bossFrame.TargetFrameContent.TargetFrameContentMain.Name
+    if bossFrameName then
+        bossFrameName:SetFont(font, fontSize, fontOutline)
+        bossFrameName:SetShadowOffset(0, 0)
+        bossFrameName:SetTextColor(1, 1, 1)
+    end
+end
+
+local function HookBossFrames()
+    for i = 1, 5 do
+        local bossFrame = _G["Boss"..i.."TargetFrame"]
+        if bossFrame then
+            bossFrame:HookScript("OnShow", function(self)
+                SetBossFrameFonts(self)
+            end)
         end
     end
 end
 
-self:
-local bossNameEvent = CreateFrame("Frame")
-bossNameEvent:RegisterEvent("UNIT_TARGETABLE_CHANGED");
-bossNameEvent:SetScript("OnEvent", function()
-    if event == 'UNIT_TARGETABLE_CHANGED' then
-    ModifyBossName()
-    end
+local f = CreateFrame("Frame")
+f:RegisterEvent("PLAYER_ENTERING_WORLD")
+f:SetScript("OnEvent", function(self, event, ...)
+    HookBossFrames()
 end)
-
---Load ModifyBossName
-ModifyBossName()
 
 --------------
 --PARTY FRAMES
