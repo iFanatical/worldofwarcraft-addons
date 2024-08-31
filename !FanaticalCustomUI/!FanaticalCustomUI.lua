@@ -182,6 +182,29 @@ end
 --Load ModifyChatTabs
 ModifyChatTabs()
 
+---------------
+--EDITBOX FONTS
+---------------
+local function EditBoxFont()
+    for i = 1, NUM_CHAT_WINDOWS do
+        local editBox = _G["ChatFrame"..i.."EditBox"]
+        local editBoxHeader = _G["ChatFrame"..i.."EditBoxHeader"]
+        local font, size, _ = editBox:GetFont()
+
+        if editBox then
+            editBox:SetFont(font, size, "OUTLINE")  -- Add outline to the tab text
+            editBox:SetShadowOffset(0, 0)  -- Remove shadow from the tab text
+        end
+
+        if editBoxHeader then
+            editBoxHeader:SetFont(font, size, "OUTLINE")  -- Add outline to the tab text
+            editBoxHeader:SetShadowOffset(0, 0)  -- Remove shadow from the tab text
+        end
+    end
+end
+
+EditBoxFont()
+
 --------------
 --PLAYER FRAME
 --------------
