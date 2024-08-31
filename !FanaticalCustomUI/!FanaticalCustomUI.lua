@@ -12,10 +12,17 @@ uiSetup:SetScript("OnEvent", function(self)
     MainStatusTrackingBarContainer:HookScript("OnShow", MainStatusTrackingBarContainer.Hide)
     MainStatusTrackingBarContainer:Hide()
 
+    --Player Frame Adjustment
+    PlayerFrameGroupIndicatorMiddle:SetTexture(nil)
+    PlayerFrameGroupIndicatorLeft:SetTexture(nil)
+    PlayerFrameGroupIndicatorRight:SetTexture(nil)
+    PlayerFrameGroupIndicatorText:SetShadowOffset(0,0)
+    PlayerFrameGroupIndicatorText:SetFont("Fonts\\2002.TTF", 10, "OUTLINE")
+    PlayerFrameGroupIndicatorText:SetTextColor(1, 1, 1)
+
     --Focus Target of Target Frame
     FocusFrameToT:ClearAllPoints()
     FocusFrameToT:SetPoint("CENTER",FocusFrame,"CENTER", 80,-55)
-    --FocusFrameToT.SetPoint = function() end
     FocusFrameToT:SetScale(1)
 
     --Target of Target Frame
@@ -26,6 +33,9 @@ uiSetup:SetScript("OnEvent", function(self)
     --Party frame setup
     CompactPartyFrame:ClearAllPoints()
     CompactPartyFrame:SetScale(1.2)
+
+    --Arena frame setup
+    CompactArenaFrame:SetScale(1.2)
         
     --Rune frame setup
     RuneFrame:HookScript("OnShow", RuneFrame.Hide)
@@ -101,6 +111,9 @@ local function ModifyChatFrames()
             local editBoxMid = _G["ChatFrame"..i.."EditBoxMid"]
             local editBoxRight = _G["ChatFrame"..i.."EditBoxRight"]
             local editBoxLeft = _G["ChatFrame"..i.."EditBoxLeft"]
+            local editBoxFocusRight = _G["ChatFrame"..i.."EditBoxFocusRight"]
+            local editBoxFocusMid = _G["ChatFrame"..i.."EditBoxFocusMid"]
+            local editBoxFocusLeft = _G["ChatFrame"..i.."EditBoxFocusLeft"]
             local rightTexture = _G["ChatFrame"..i.."RightTexture"]
             local leftTexture = _G["ChatFrame"..i.."LeftTexture"]
             local topTexture = _G["ChatFrame"..i.."TopTexture"]
@@ -112,7 +125,7 @@ local function ModifyChatFrames()
             local buttonFrame = _G["ChatFrame"..i.."ButtonFrame"]
             local font, size, _ = chatFrame:GetFont()
 
-
+            --Remove ChatFrame background/textures
             if background then background:Hide() end
             if editBoxMid then editBoxMid:Hide() end
             if editBoxRight then editBoxRight:Hide() end
@@ -126,6 +139,11 @@ local function ModifyChatFrames()
             if bottomRightTexture then bottomRightTexture:Hide() end
             if bottomLeftTexture then bottomLeftTexture:Hide() end
 
+            --Removes small white border around editBox
+            if editBoxFocusRight then editBoxFocusRight:SetTexture(nil) end
+            if editBoxFocusMid then editBoxFocusMid:SetTexture(nil) end
+            if editBoxFocusLeft then editBoxFocusLeft:SetTexture(nil) end
+
             if buttonFrame then buttonFrame:Hide() end
 
             if editBox then
@@ -134,7 +152,7 @@ local function ModifyChatFrames()
 
                 -- Set a proper width and height for the EditBox
                 editBox:SetWidth(480)  -- You can adjust the width as needed
-                editBox:SetHeight(20)  -- You can adjust the height as needed
+                editBox:SetHeight(24)  -- You can adjust the height as needed
             end
             if chatFrame then
                 chatFrame:SetFont(font, 14, "OUTLINE")  -- Add outline to the font
@@ -365,6 +383,38 @@ end)
 --Load ModifyToTName
 ModifyFocusToTName()
 
+--------------
+--ARENA FRAMES
+--------------
+local function ModifyArenaStatus()
+    for i = 1, 5 do
+        local arenaStatus = _G["CompactArenaFrameMember"..i.."StatusText"]
+        local font, size, _ = arenaStatus:GetFont()
+        
+        if arenaStatus then
+            arenaStatus:SetFont(font, size, "OUTLINE")  -- Add outline to the font
+            arenaStatus:SetShadowOffset(0, 0)  -- Remove shadow         
+            arenaStatus:SetTextColor (1, 1, 1)  
+        end
+    end
+end
+
+local function ModifyArenaNames()
+    for i = 1, 5 do
+        local arenaName = _G["CompactArenaFrameMember"..i.."Name"]
+        local font, size, _ = arenaName:GetFont()
+        
+        if arenaName then
+            arenaName:SetFont(font, size, "OUTLINE")  -- Add outline to the font
+            arenaName:SetShadowOffset(0, 0)  -- Remove shadow           
+        end
+    end
+end
+
+--Load ModifyPartyStatus and Names
+ModifyArenaStatus()
+ModifyArenaNames()
+
 -------------
 --BOSS FRAMES
 -------------
@@ -392,9 +442,9 @@ local function HookBossFrames()
     end
 end
 
-local f = CreateFrame("Frame")
-f:RegisterEvent("PLAYER_ENTERING_WORLD")
-f:SetScript("OnEvent", function(self, event, ...)
+local SetBossFrameFontsEvent = CreateFrame("Frame")
+SetBossFrameFontsEvent:RegisterEvent("PLAYER_ENTERING_WORLD")
+SetBossFrameFontsEvent:SetScript("OnEvent", function(self, event, ...)
     HookBossFrames()
 end)
 
@@ -479,13 +529,26 @@ hooksecurefunc("CompactUnitFrame_UpdateName", ChangeRaidFrameFont)
 hooksecurefunc("CompactUnitFrame_UpdateStatusText", ChangeRaidFrameFont)
 
 -- Apply font changes when the addon is loaded
-local frame = CreateFrame("Frame")
-frame:RegisterEvent("ADDON_LOADED")
-frame:SetScript("OnEvent", function(self, event, addonName)
+local ChangeRaidFrameFontEvent = CreateFrame("Frame")
+ChangeRaidFrameFontEvent:RegisterEvent("ADDON_LOADED")
+ChangeRaidFrameFontEvent:SetScript("OnEvent", function(self, event, addonName)
     if addonName == "Blizzard_CompactRaidFrames" then
         ChangeRaidFrameFont()
     end
 end)
+
+
+--local function ChangeObjTrackerFonts()
+--    local thqFonts = _G["TRACKER_HEADER_QUESTS"]
+--    local font, size, _ = FontString:GetFont()
+--
+--    if thqFonts then
+--        thqFonts:SetFont(font, size, "OUTLINE")
+--        thqFonts:SetShadowOffset(0,0)
+--    end
+--end
+--
+--ChangeObjTrackerFonts()
 
 --------------------
 --ACTION BAR HOTKEYS
