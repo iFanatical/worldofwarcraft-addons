@@ -4,88 +4,80 @@
 local uiSetup = CreateFrame("Frame")
 uiSetup:RegisterEvent("PLAYER_ENTERING_WORLD")
 uiSetup:SetScript("OnEvent", function(self)
+		
+		--Hide StanceBar
+		StanceBar:Hide()
 
-    --Hide StanceBar
-    StanceBar:Hide()
-
-    --Hide XP Bar
-    MainStatusTrackingBarContainer:HookScript("OnShow", MainStatusTrackingBarContainer.Hide)
-    MainStatusTrackingBarContainer:Hide()
-
-    --Player Frame Adjustment
-    PlayerFrameGroupIndicatorMiddle:SetTexture(nil)
-    PlayerFrameGroupIndicatorLeft:SetTexture(nil)
-    PlayerFrameGroupIndicatorRight:SetTexture(nil)
-    PlayerFrameGroupIndicatorText:SetShadowOffset(0,0)
-    PlayerFrameGroupIndicatorText:SetFont("Fonts\\2002.TTF", 10, "OUTLINE")
-    PlayerFrameGroupIndicatorText:SetTextColor(1, 1, 1)
-
-    --Focus Target of Target Frame
-    FocusFrameToT:ClearAllPoints()
-    FocusFrameToT:SetPoint("CENTER",FocusFrame,"CENTER", 80,-55)
-    FocusFrameToT:SetScale(1)
-
-    --Target of Target Frame
-    TargetFrameToT:ClearAllPoints()
-    TargetFrameToT:SetPoint("CENTER",TargetFrame,"CENTER", 80,-55)
-    TargetFrameToT:SetScale(1)
-
-    --Party frame setup
-    CompactPartyFrame:ClearAllPoints()
-    CompactPartyFrame:SetScale(1.2)
-
-    --Arena frame setup
-    CompactArenaFrame:SetScale(1.2)
+		--Hide XP Bar
+		MainStatusTrackingBarContainer:HookScript("OnShow", MainStatusTrackingBarContainer.Hide)
+		MainStatusTrackingBarContainer:Hide()
         
-    --Rune frame setup
-    RuneFrame:HookScript("OnShow", RuneFrame.Hide)
-    RuneFrame:Hide()
-    RuneFrame:ClearAllPoints()
+        --Focus Target of Target Frame
+		FocusFrameToT:ClearAllPoints()
+        FocusFrameToT:SetPoint("CENTER",FocusFrame,"CENTER", 80,-55)
+        --FocusFrameToT.SetPoint = function() end
+        FocusFrameToT:SetScale(1)
         
-    --Essence frame setup
-    EssencePlayerFrame:HookScript("OnShow", RuneFrame.Hide)
-    EssencePlayerFrame:Hide()
-    EssencePlayerFrame:ClearAllPoints()
-        
-    --Combo Point Druid Player frame setup
-    DruidComboPointBarFrame:HookScript("OnShow", DruidComboPointBarFrame.Hide)
-    DruidComboPointBarFrame:Hide()
-    DruidComboPointBarFrame:ClearAllPoints()
+		--Target of Target Frame
+		TargetFrameToT:ClearAllPoints()
+        TargetFrameToT:SetPoint("CENTER",TargetFrame,"CENTER", 80,-55)
+        --TargetFrameToT.SetPoint = function() end
+        TargetFrameToT:SetScale(1)
 
-    --Monk Harmony Bar frame setup
-    --MonkHarmonyBarFrame:HookScript("OnShow", MonkHarmonyBarFrame.Hide)
-    --MonkHarmonyBarFrame:Hide()
-    --MonkHarmonyBarFrame:ClearAllPoints()
-
-    -- Monk Stagger Bar frame setup
+        -- Party frame setup
+        CompactPartyFrame:ClearAllPoints()
+        CompactPartyFrame:SetScale(1.2)
         
-    --MonkStaggerBar:HookScript("OnShow", MonkStaggerBar.Hide)
-    --MonkStaggerBar:Hide()
-    --MonkStaggerBar:ClearAllPoints()
+        -- Rune frame setup
+        RuneFrame:HookScript("OnShow", RuneFrame.Hide)
+        RuneFrame:Hide()
+        RuneFrame:ClearAllPoints()
         
-    --Paladin PowerBar Settings
-    PaladinPowerBarFrame:HookScript("OnShow", PaladinPowerBarFrame.Hide)
-    PaladinPowerBarFrame:Hide()
-    PaladinPowerBarFrame:ClearAllPoints()
+        -- Essence frame setup
+        EssencePlayerFrame:HookScript("OnShow", RuneFrame.Hide)
+        EssencePlayerFrame:Hide()
+        EssencePlayerFrame:ClearAllPoints()
         
-    --AlternatePowerBar Settings
-    --PlayerFrameAlternatePowerBarArea:Hide()
-    --PlayerFrameAlternatePowerBarArea:HookScript("OnShow", PlayerFrameAlternatePowerBarArea.Hide)
-    --PlayerFrame.PlayerFrameContainer.AlternatePowerFrameTexture:Hide()
-    --PlayerFrame.PlayerFrameContainer.AlternatePowerFrameTexture:HookScript("OnShow", PlayerFrame.PlayerFrameContainer.AlternatePowerFrameTexture.Hide)
-    --PlayerFrame.PlayerFrameContainer.AlternatePowerFrameTexture:HookScript("OnShow", PlayerFrame.PlayerFrameContainer.Show)
-    --PlayerFrame.PlayerFrameContainer:Show()
-    --AlternatePowerBar.Border:Hide()
-    --AlternatePowerBar.Border:HookScript("OnShow", AlternatePowerBar.Border.Hide)
-    --AlternatePowerBar.Background:Hide()
-    --AlternatePowerBar.Background:HookScript("OnShow", AlternatePowerBar.Background.Hide)
+        -- Combo Point Druid Player frame setup
+        DruidComboPointBarFrame:HookScript("OnShow", DruidComboPointBarFrame.Hide)
+        DruidComboPointBarFrame:Hide()
+        DruidComboPointBarFrame:ClearAllPoints()
+        
+        -- Monk Harmony Bar frame setup
+        
+        --MonkHarmonyBarFrame:HookScript("OnShow", MonkHarmonyBarFrame.Hide)
+        --MonkHarmonyBarFrame:Hide()
+        --MonkHarmonyBarFrame:ClearAllPoints()
 
-    --Hide Class Totem Frame
-    TotemFrame:UnregisterAllEvents()
-    TotemFrame:HookScript("OnShow", TotemFrame.Hide)
-    TotemFrame:Hide()
-
-    self:UnregisterAllEvents()
+        -- Monk Stagger Bar frame setup
+        
+        --MonkStaggerBar:HookScript("OnShow", MonkStaggerBar.Hide)
+        --MonkStaggerBar:Hide()
+        --MonkStaggerBar:ClearAllPoints()
+        
+        --Paladin PowerBar Settings
+		PaladinPowerBarFrame:HookScript("OnShow", PaladinPowerBarFrame.Hide)
+        PaladinPowerBarFrame:Hide()
+        PaladinPowerBarFrame:ClearAllPoints()
+        
+        --AlternatePowerBar Settings
+        --PlayerFrameAlternatePowerBarArea:Hide()
+        --PlayerFrameAlternatePowerBarArea:HookScript("OnShow", PlayerFrameAlternatePowerBarArea.Hide)
+        --PlayerFrame.PlayerFrameContainer.AlternatePowerFrameTexture:Hide()
+        --PlayerFrame.PlayerFrameContainer.AlternatePowerFrameTexture:HookScript("OnShow", PlayerFrame.PlayerFrameContainer.AlternatePowerFrameTexture.Hide)
+        --PlayerFrame.PlayerFrameContainer.AlternatePowerFrameTexture:HookScript("OnShow", PlayerFrame.PlayerFrameContainer.Show)
+        --PlayerFrame.PlayerFrameContainer:Show()
+        --AlternatePowerBar.Border:Hide()
+        --AlternatePowerBar.Border:HookScript("OnShow", AlternatePowerBar.Border.Hide)
+        --AlternatePowerBar.Background:Hide()
+        --AlternatePowerBar.Background:HookScript("OnShow", AlternatePowerBar.Background.Hide)
+        
+        --Hide Class Totem Frame
+        TotemFrame:UnregisterAllEvents()
+		TotemFrame:HookScript("OnShow", TotemFrame.Hide)
+		TotemFrame:Hide()
+        
+		self:UnregisterAllEvents()
 end)
 
 ----------
@@ -111,21 +103,14 @@ local function ModifyChatFrames()
             local editBoxMid = _G["ChatFrame"..i.."EditBoxMid"]
             local editBoxRight = _G["ChatFrame"..i.."EditBoxRight"]
             local editBoxLeft = _G["ChatFrame"..i.."EditBoxLeft"]
-            local editBoxFocusRight = _G["ChatFrame"..i.."EditBoxFocusRight"]
-            local editBoxFocusMid = _G["ChatFrame"..i.."EditBoxFocusMid"]
-            local editBoxFocusLeft = _G["ChatFrame"..i.."EditBoxFocusLeft"]
             local rightTexture = _G["ChatFrame"..i.."RightTexture"]
             local leftTexture = _G["ChatFrame"..i.."LeftTexture"]
             local topTexture = _G["ChatFrame"..i.."TopTexture"]
-            local topRightTexture = _G["ChatFrame"..i.."TopRightTexture"]
-            local topLeftTexture = _G["ChatFrame"..i.."TopLeftTexture"]
             local bottomTexture = _G["ChatFrame"..i.."BottomTexture"]
-            local bottomRightTexture = _G["ChatFrame"..i.."BottomRightTexture"]
-            local bottomLeftTexture = _G["ChatFrame"..i.."BottomLeftTexture"]
             local buttonFrame = _G["ChatFrame"..i.."ButtonFrame"]
             local font, size, _ = chatFrame:GetFont()
 
-            --Remove ChatFrame background/textures
+
             if background then background:Hide() end
             if editBoxMid then editBoxMid:Hide() end
             if editBoxRight then editBoxRight:Hide() end
@@ -133,16 +118,7 @@ local function ModifyChatFrames()
             if rightTexture then rightTexture:Hide() end
             if leftTexture then leftTexture:Hide() end
             if topTexture then topTexture:Hide() end
-            if topRightTexture then topRightTexture:Hide() end
-            if topLeftTexture then topLeftTexture:Hide() end
             if bottomTexture then bottomTexture:Hide() end
-            if bottomRightTexture then bottomRightTexture:Hide() end
-            if bottomLeftTexture then bottomLeftTexture:Hide() end
-
-            --Removes small white border around editBox
-            if editBoxFocusRight then editBoxFocusRight:SetTexture(nil) end
-            if editBoxFocusMid then editBoxFocusMid:SetTexture(nil) end
-            if editBoxFocusLeft then editBoxFocusLeft:SetTexture(nil) end
 
             if buttonFrame then buttonFrame:Hide() end
 
@@ -152,7 +128,7 @@ local function ModifyChatFrames()
 
                 -- Set a proper width and height for the EditBox
                 editBox:SetWidth(480)  -- You can adjust the width as needed
-                editBox:SetHeight(24)  -- You can adjust the height as needed
+                editBox:SetHeight(20)  -- You can adjust the height as needed
             end
             if chatFrame then
                 chatFrame:SetFont(font, 14, "OUTLINE")  -- Add outline to the font
@@ -200,32 +176,9 @@ end
 --Load ModifyChatTabs
 ModifyChatTabs()
 
----------------
---EDITBOX FONTS
----------------
-local function EditBoxFont()
-    for i = 1, NUM_CHAT_WINDOWS do
-        local editBox = _G["ChatFrame"..i.."EditBox"]
-        local editBoxHeader = _G["ChatFrame"..i.."EditBoxHeader"]
-        local font, size, _ = editBox:GetFont()
-
-        if editBox then
-            editBox:SetFont(font, size, "OUTLINE")  -- Add outline to the tab text
-            editBox:SetShadowOffset(0, 0)  -- Remove shadow from the tab text
-        end
-
-        if editBoxHeader then
-            editBoxHeader:SetFont(font, size, "OUTLINE")  -- Add outline to the tab text
-            editBoxHeader:SetShadowOffset(0, 0)  -- Remove shadow from the tab text
-        end
-    end
-end
-
-EditBoxFont()
-
---------------
---PLAYER FRAME
---------------
+-------------
+--PLAYER NAME
+-------------
 local function ModifyPlayerName()
     local playerUnitName = _G["PlayerName"]
     local playerUnitLevel = _G["PlayerLevelText"]
@@ -246,9 +199,9 @@ end
 --Load ModifyPlayerName
 ModifyPlayerName()
 
------------
---PET FRAME
------------
+----------
+--PET NAME
+----------
 local function ModifyPetName()
     local petUnitName = _G["PetName"]
     local font, size, _ = petUnitName:GetFont()
@@ -263,9 +216,9 @@ end
 --Load ModifyPetName
 ModifyPetName()
 
---------------
---TARGET FRAME
---------------
+-------------
+--TARGET NAME
+-------------
 local function ModifyTargetName()
     local targetFrameName = TargetFrame.TargetFrameContent.TargetFrameContentMain.Name
     local targetFrameLevelText = TargetFrame.TargetFrameContent.TargetFrameContentMain.LevelText
@@ -295,7 +248,7 @@ targetNameEvent:SetScript("OnEvent", function()
     end
 end)
 
---Load ModifyTargetName
+-- Load ModifyTargetName
 ModifyTargetName()
 
 
@@ -324,9 +277,9 @@ end)
 --Load ModifyToTName
 ModifyToTName()
 
--------------
---FOCUS FRAME
--------------
+------------
+--FOCUS NAME
+------------
 local function ModifyFocusName()
     local focusFrameName = FocusFrame.TargetFrameContent.TargetFrameContentMain.Name
     local focusFrameLevelText = FocusFrame.TargetFrameContent.TargetFrameContentMain.LevelText
@@ -361,6 +314,7 @@ ModifyFocusName()
 
 
 local function ModifyFocusToTName()
+    --local targetToTName = TargetFrameToT.Name
     local focusToTName = FocusFrameToT.Name
     local font, size, _ = focusToTName:GetFont()
 
@@ -372,8 +326,8 @@ local function ModifyFocusToTName()
 end
 
 local focusToTNameEvent = CreateFrame("Frame")
-focusToTNameEvent:RegisterEvent("UNIT_CLASSIFICATION_CHANGED")
-focusToTNameEvent:RegisterEvent("PLAYER_FLAGS_CHANGED")
+focusToTNameEvent:RegisterEvent("UNIT_CLASSIFICATION_CHANGED");
+focusToTNameEvent:RegisterEvent("PLAYER_FLAGS_CHANGED");
 focusToTNameEvent:SetScript("OnEvent", function()
     if event == 'PLAYER_FLAGS_CHANGED' then
     ModifyFocusToTName()
@@ -384,72 +338,7 @@ end)
 ModifyFocusToTName()
 
 --------------
---ARENA FRAMES
---------------
-local function ModifyArenaStatus()
-    for i = 1, 5 do
-        local arenaStatus = _G["CompactArenaFrameMember"..i.."StatusText"]
-        local font, size, _ = arenaStatus:GetFont()
-        
-        if arenaStatus then
-            arenaStatus:SetFont(font, size, "OUTLINE")  -- Add outline to the font
-            arenaStatus:SetShadowOffset(0, 0)  -- Remove shadow         
-            arenaStatus:SetTextColor (1, 1, 1)  
-        end
-    end
-end
-
-local function ModifyArenaNames()
-    for i = 1, 5 do
-        local arenaName = _G["CompactArenaFrameMember"..i.."Name"]
-        local font, size, _ = arenaName:GetFont()
-        
-        if arenaName then
-            arenaName:SetFont(font, size, "OUTLINE")  -- Add outline to the font
-            arenaName:SetShadowOffset(0, 0)  -- Remove shadow           
-        end
-    end
-end
-
---Load ModifyPartyStatus and Names
-ModifyArenaStatus()
-ModifyArenaNames()
-
--------------
---BOSS FRAMES
--------------
-local function SetBossFrameFonts(bossFrame)
-    local font = "Fonts\\FRIZQT__.TTF"  -- Path to your desired font
-    local fontSize = 10  -- Desired font size
-    local fontOutline = "OUTLINE"  -- Font outline type (e.g., "OUTLINE", "THICKOUTLINE", or "" for no outline)
-
-    local bossFrameName = bossFrame.TargetFrameContent.TargetFrameContentMain.Name
-    if bossFrameName then
-        bossFrameName:SetFont(font, fontSize, fontOutline)
-        bossFrameName:SetShadowOffset(0, 0)
-        bossFrameName:SetTextColor(1, 1, 1)
-    end
-end
-
-local function HookBossFrames()
-    for i = 1, 5 do
-        local bossFrame = _G["Boss"..i.."TargetFrame"]
-        if bossFrame then
-            bossFrame:HookScript("OnShow", function(self)
-                SetBossFrameFonts(self)
-            end)
-        end
-    end
-end
-
-local SetBossFrameFontsEvent = CreateFrame("Frame")
-SetBossFrameFontsEvent:RegisterEvent("PLAYER_ENTERING_WORLD")
-SetBossFrameFontsEvent:SetScript("OnEvent", function(self, event, ...)
-    HookBossFrames()
-end)
-
---------------
---PARTY FRAMES
+--PARTY STATUS
 --------------
 local function ModifyPartyStatus()
     for i = 1, 5 do
@@ -464,6 +353,12 @@ local function ModifyPartyStatus()
     end
 end
 
+--Load ModifyPartyStatus
+ModifyPartyStatus()
+
+------------
+--PARTY NAME
+------------
 local function ModifyPartyNames()
     for i = 1, 5 do
         local partyName = _G["CompactPartyFrameMember"..i.."Name"]
@@ -476,13 +371,12 @@ local function ModifyPartyNames()
     end
 end
 
---Load ModifyPartyStatus and Names
-ModifyPartyStatus()
+--Load ModifyPartyNames
 ModifyPartyNames()
 
--------------
---RAID FRAMES
--------------
+---------------------------
+--RAID NAME AND STATUS TEXT
+---------------------------
 local function ChangeRaidFrameFont()
     local newFont = "Fonts\\FRIZQT__.TTF"  -- Path to the desired font
     local fontSizeName = 12  -- Desired font size
@@ -529,46 +423,13 @@ hooksecurefunc("CompactUnitFrame_UpdateName", ChangeRaidFrameFont)
 hooksecurefunc("CompactUnitFrame_UpdateStatusText", ChangeRaidFrameFont)
 
 -- Apply font changes when the addon is loaded
-local ChangeRaidFrameFontEvent = CreateFrame("Frame")
-ChangeRaidFrameFontEvent:RegisterEvent("ADDON_LOADED")
-ChangeRaidFrameFontEvent:SetScript("OnEvent", function(self, event, addonName)
+local frame = CreateFrame("Frame")
+frame:RegisterEvent("ADDON_LOADED")
+frame:SetScript("OnEvent", function(self, event, addonName)
     if addonName == "Blizzard_CompactRaidFrames" then
         ChangeRaidFrameFont()
     end
 end)
-
-
---local function ChangeObjTrackerFonts()
---    local thqFonts = _G["TRACKER_HEADER_QUESTS"]
---    local font, size, _ = FontString:GetFont()
---
---    if thqFonts then
---        thqFonts:SetFont(font, size, "OUTLINE")
---        thqFonts:SetShadowOffset(0,0)
---    end
---end
---
---ChangeObjTrackerFonts()
-
--------------
---ERROR FRAME
--------------
-local font = "Fonts\\FRIZQT__.TTF"  -- Path to your desired font
-local fontSize = 18  -- Desired font size
-local fontOutline = "OUTLINE"  -- Font outline type (e.g., "OUTLINE", "THICKOUTLINE", or "" for no outline)
-
-local function SetErrorFrameFont()
-    UIErrorsFrame:SetFont(font, fontSize, fontOutline)
-    UIErrorsFrame:SetShadowOffset(0, 0)
-end
-
--- Apply the font settings when the player logs in or reloads the UI
-local errorFrameEvent = CreateFrame("Frame")
-errorFrameEvent:RegisterEvent("PLAYER_LOGIN")
-errorFrameEvent:SetScript("OnEvent", SetErrorFrameFont)
-
--- Run the function initially when the UI loads
-SetErrorFrameFont()
 
 --------------------
 --ACTION BAR HOTKEYS
@@ -617,57 +478,3 @@ for _, bar in pairs(bars) do
 		hooksecurefunc(button, "UpdateHotkeys", UpdateHotkey)
 	end
 end
-
-------------------------
---PET ACTION BAR HOTKEYS
-------------------------
-local function UpdatePetActionButtonText()
-    for i = 1, NUM_PET_ACTION_SLOTS do
-        local button = _G["PetActionButton"..i]
-        local hotkey = _G[button:GetName().."HotKey"]
-        local keyText = hotkey:GetText()
-
-        -- Replace the text as needed
-        if keyText then
-            keyText = keyText:gsub("a%-", "A")
-            keyText = keyText:gsub("s%-", "S")
-            hotkey:SetText(keyText)
-        end
-    end
-end
-
--- Apply the changes when the player logs in or reloads the UI
-local petActionButtonEvent = CreateFrame("Frame")
-petActionButtonEvent:RegisterEvent("PLAYER_ENTERING_WORLD")
-petActionButtonEvent:RegisterEvent("UPDATE_BINDINGS")
-petActionButtonEvent:RegisterEvent("PET_BAR_UPDATE")
-petActionButtonEvent:SetScript("OnEvent", function()
-    C_Timer.After(0.1, UpdatePetActionButtonText)  -- Delay to ensure all buttons are updated
-end)
-
-UpdatePetActionButtonText()
-
--------------
---DAMAGE TEXT
--------------
---DAMAGE_TEXT_FONT = "Interface\\AddOns\\!FanaticalMedia\\fonts\\PEPSI_pl.ttf"
-
-------------------------------
---REMOVE BW QUEUE TIMER BORDER
-------------------------------
-local function bwQTHide()
-    if BigWigsLoader then
-        BigWigsLoader.RegisterMessage('!FanaticalCustomUI', "BigWigs_FrameCreated", function(event, frame, name)
-            if name == "QueueTimer" then
-                frame:SetTexture(nil)
-            end
-        end)
-    end
-end
-
-local bwQTEvent = CreateFrame("Frame")
-bwQTEvent:SetScript("OnEvent", function()
-    if event == 'ADDON_LOADED' and addon == 'BigWigs' then
-    bwQTHide()
-    end
-end)
