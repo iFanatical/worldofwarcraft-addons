@@ -4,9 +4,8 @@
 local uiSetup = CreateFrame("Frame")
 uiSetup:RegisterEvent("PLAYER_ENTERING_WORLD")
 uiSetup:SetScript("OnEvent", function(self)
-
-    --Hide StanceBar
-    StanceBar:Hide()
+    --Hide EncounterBar
+    EncounterBar:Hide()
 
     --Hide XP Bar
     MainStatusTrackingBarContainer:HookScript("OnShow", MainStatusTrackingBarContainer.Hide)
@@ -163,7 +162,7 @@ local function ModifyChatFrames()
 end
 
 --Load ModifyChatFrames
-ModifyChatFrames()
+--ModifyChatFrames()
 
 -----------
 --CHAT TABS
@@ -198,7 +197,7 @@ local function ModifyChatTabs()
 end
 
 --Load ModifyChatTabs
-ModifyChatTabs()
+--ModifyChatTabs()
 
 ---------------
 --EDITBOX FONTS
@@ -221,7 +220,7 @@ local function EditBoxFont()
     end
 end
 
-EditBoxFont()
+--EditBoxFont()
 
 --------------
 --PLAYER FRAME
@@ -307,7 +306,6 @@ local function ModifyToTName()
     if targetToTName then
         targetToTName:SetFont(font, size, "OUTLINE")  -- Add outline to the font
         targetToTName:SetShadowOffset(0, 0)  -- Remove shadow
-        targetToTName:SetTextColor(1, 1, 1)
     end
 end
 
@@ -342,6 +340,7 @@ local function ModifyFocusName()
     if focusFrameLevelText then
         focusFrameLevelText:SetFont(font, size, "OUTLINE")  -- Add outline to the font
         focusFrameLevelText:SetShadowOffset(0, 0)  -- Remove shadow
+        focusFrameLevelText:SetTextColor(1, 1, 1)
     end
 end
 
@@ -459,7 +458,7 @@ local function ModifyPartyStatus()
         if partyStatus then
             partyStatus:SetFont(font, size, "OUTLINE")  -- Add outline to the font
             partyStatus:SetShadowOffset(0, 0)  -- Remove shadow         
-            partyStatus:SetTextColor (1, 1, 1)  
+            partyStatus:SetTextColor (1, 1, 1)
         end
     end
 end
@@ -553,13 +552,15 @@ end)
 -------------
 --ERROR FRAME
 -------------
-local font = "Fonts\\FRIZQT__.TTF"  -- Path to your desired font
-local fontSize = 18  -- Desired font size
-local fontOutline = "OUTLINE"  -- Font outline type (e.g., "OUTLINE", "THICKOUTLINE", or "" for no outline)
-
 local function SetErrorFrameFont()
-    UIErrorsFrame:SetFont(font, fontSize, fontOutline)
-    UIErrorsFrame:SetShadowOffset(0, 0)
+    local font = "Fonts\\FRIZQT__.TTF"  -- Path to your desired font
+    local fontSize = 18  -- Desired font size
+    local fontOutline = "OUTLINE"  -- Font outline type (e.g., "OUTLINE", "THICKOUTLINE", or "" for no outline)
+
+    if font then
+        UIErrorsFrame:SetFont(font, fontSize, fontOutline)
+        UIErrorsFrame:SetShadowOffset(0, 0)
+    end
 end
 
 -- Apply the font settings when the player logs in or reloads the UI
@@ -652,22 +653,23 @@ UpdatePetActionButtonText()
 -------------
 --DAMAGE_TEXT_FONT = "Interface\\AddOns\\!FanaticalMedia\\fonts\\PEPSI_pl.ttf"
 
-------------------------------
---REMOVE BW QUEUE TIMER BORDER
-------------------------------
-local function bwQTHide()
-    if BigWigsLoader then
-        BigWigsLoader.RegisterMessage('!FanaticalCustomUI', "BigWigs_FrameCreated", function(event, frame, name)
-            if name == "QueueTimer" then
-                frame:SetTexture(nil)
-            end
-        end)
-    end
-end
-
-local bwQTEvent = CreateFrame("Frame")
-bwQTEvent:SetScript("OnEvent", function()
-    if event == 'ADDON_LOADED' and addon == 'BigWigs' then
-    bwQTHide()
-    end
-end)
+--------------------------------
+----REMOVE BW QUEUE TIMER BORDER
+--------------------------------
+--local function bwQTHide()
+--    if BigWigsLoader then
+--        print("BigWigs' Queue Timer frame hidden!")
+--        BigWigsLoader.RegisterMessage('!FanaticalCustomUI', "BigWigs_FrameCreated", function(event, frame, name)
+--            if name == "QueueTimer" then
+--                frame:SetTexture(nil)
+--            end
+--        end)
+--    end
+--end
+--
+--local bwQTEvent = CreateFrame("Frame")
+--bwQTEvent:SetScript("OnEvent", function()
+--    if event == 'ADDON_LOADED' and addon == 'BigWigs' then
+--    bwQTHide()
+--    end
+--end)

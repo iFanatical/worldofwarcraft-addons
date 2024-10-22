@@ -1,0 +1,11 @@
+## Interface: 100105
+
+## Title: |cff7381ff!FanaticalUI_CellUF|r
+## Notes: Custom Cell - Unit Frames adjustments for Fanatical UI » twitch.tv/ifanatical.
+## Version: 2.0
+## Author: Fanatical
+## URL: http://twitch.tv/ifanatical
+## DefaultState: Enable
+## Dependencies: Cell_UnitFrames
+
+Load_Locales.xml
